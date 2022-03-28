@@ -1,0 +1,48 @@
+{% extends 'employee_app/base.html' %}
+
+{% block title %} Employee Create Employee {% endblock %}
+
+{% block body %}
+    {% if employee %}
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>Eno</th>
+                    <td><input type="number" name = 'eno' value="{{ employee.eno }}"> </td>
+                </tr>
+                 <tr>
+                    <th>Ename</th>
+                    <td><input type="text" name = 'ename' value="{{ employee.ename }}"> </td>
+                </tr>
+                 <tr>
+                    <th>Salary</th>
+                    <td><input type="number" name = 'salary' value="{{ employee.salary }}"> </td>
+                </tr>
+                 <tr>
+                    <th>Address</th>
+                    <td><input type="text" name = 'address' value="{{ employee.address }}"> </td>
+                </tr>
+                 <tr>
+                    <th>Mobile</th>
+                    <td><input type="number" name = 'mobile' value="{{ employee.mobile }}"> </td>
+                </tr>
+                 <tr>
+                    <th></th>
+                    <td><input type="submit"  value="update" > </td>
+                </tr>
+            </table>
+
+
+
+        </form>
+    {% elif message %}
+        {{ message }}
+    {% else %}
+        {{ error }}
+
+
+    {% endif %}
+
+
+{% endblock %}

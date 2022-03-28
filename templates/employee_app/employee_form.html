@@ -1,0 +1,26 @@
+{% extends 'employee_app/base.html' %}
+
+{% block title %} Employee Create Employee {% endblock %}
+
+{% block body %}
+    {% if form %}
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+            <input type="submit" value="Send" style="margin-left: 100px;">
+
+
+        </form>
+    {% elif data %}
+            {{ data }}
+    {% else %}
+            {{ error }}
+    {% endif %}
+
+
+
+
+    <a href="{% url 'employees' %}">Goto Table</a>
+{% endblock %}

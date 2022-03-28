@@ -1,0 +1,48 @@
+{% extends 'employee_app/base.html' %}
+
+
+{% block title %} Employee List  {% endblock %}
+
+{% block body %}
+    {% if employee_list %}
+        <table class="table table-hover table-striped table-bordered table-dark ">
+            <thead class="bg-success">
+                <tr>
+                    <th>Id</th>
+                    <th>Eno</th>
+                    <th>Ename</th>
+                    <th>Salary</th>
+                    <th>Address</th>
+                    <th>Mobile</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+
+            {% for employee in employee_list %}
+            <tbody>
+                <tr>
+                    <td> {{ employee.id }}</td>
+                    <td>{{ employee.eno }}</td>
+                    <td><a href="{% url 'employees_detail'  employee.id %}"> {{ employee.ename }}</a></td>
+                    <td>{{ employee.salary }}</td>
+                    <td>{{ employee.address }}</td>
+                    <td>{{ employee.mobile }}</td>
+                    <td>
+                        <a href="{% url 'employees_update' employee.id %}" class="btn btn-success btn-sm">Update</a>
+                        <a href="{% url 'employees_delete' employee.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h1>{{ error }}</h1>
+    {% endif %}
+
+    <h1 class="text-center">
+        <a href="{% url 'employees_create'%}" class="btn btn-primary">Create New Employee</a>
+    </h1>
+
+
+{% endblock %}
